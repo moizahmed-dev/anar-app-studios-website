@@ -1,0 +1,166 @@
+/* --- RESET & VARIABLES --- */
+:root {
+    --bg-color: #000000;      /* Deep Black */
+    --text-primary: #F5F5F7;  /* Off-White text */
+    --text-secondary: #86868B; /* Gray text */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* No scrolling */
+}
+
+/* --- NAVIGATION (Top Right) --- */
+nav {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 100;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+/* --- MAIN CONTAINER --- */
+main {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+/* --- TYPOGRAPHY --- */
+.content {
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.company-name {
+    /* 1. Increased Font Size */
+    font-size: 6rem; 
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    
+    /* 2. THE APPLE INTELLIGENCE TEXT EFFECT */
+    /* Must be transparent so the background shows through */
+    color: transparent; 
+    
+    /* The Multicolor Gradient (Cyan -> Blue -> Purple -> Magenta -> Orange) */
+    background: linear-gradient(
+        135deg, 
+        #3bf6ff 0%, 
+        #60a5fa 25%, 
+        #a855f7 50%, 
+        #ec4899 75%, 
+        #f97316 100%
+    );
+    
+    /* Standard & Webkit Clipping */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* 3. The Blooming Glow */
+    /* Multiple shadows to create depth and softness around the letters */
+    filter: drop-shadow(0 0 20px rgba(59, 246, 255, 0.3)) 
+            drop-shadow(0 0 50px rgba(168, 85, 247, 0.3));
+            
+    margin-bottom: 0;
+}
+
+/* --- BACKGROUND GLOW (Ambient) --- */
+.glow-effect {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    
+    left: 20%;
+    bottom: 20%;
+    transform: translate(-50%, 50%); 
+    
+    background: radial-gradient(circle, rgba(50,200,255,0.2) 0%, rgba(100,0,255,0.1) 50%, rgba(0,0,0,0) 70%);
+    filter: blur(100px); 
+    opacity: 0.4;
+    z-index: 1;
+    pointer-events: none;
+    
+    animation: breathe 8s infinite alternate ease-in-out;
+}
+
+/* --- FOOTER --- */
+footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: #333;
+    font-size: 0.75rem;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes breathe {
+    0% { transform: translate(-50%, 50%) scale(1); opacity: 0.3; }
+    100% { transform: translate(-50%, 50%) scale(1.1); opacity: 0.5; }
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .company-name {
+        font-size: 5rem;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 768px) {
+    .company-name {
+        font-size: 3rem; 
+    }
+    
+    nav {
+        top: 20px;
+        right: 20px;
+    }
+
+    .glow-effect {
+        width: 300px;
+        height: 300px;
+        left: 50%; 
+        bottom: 50%;
+        transform: translate(-50%, 50%);
+    }
+}
+
+/* Small Phones (SE/Mini) */
+@media (max-width: 380px) {
+    .company-name {
+        font-size: 2.2rem;
+    }
+}
